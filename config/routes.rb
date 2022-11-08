@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   root 'homes#index'
-  resources 'comment_on_products'
+  #resources 'comment_on_products'
 
   resources 'wishlists' 
   
@@ -90,12 +90,11 @@ Rails.application.routes.draw do
 
   namespace :api, constraints: { format: :json } do
     namespace :v1, constraints: { format: :json } do
-      resources :homes, only: [:index, :show]
-      resources'homes' do
+      resources :homes, only: [:index, :show] do
         post "like_product", on: :member
         get "dislike_product", on: :member
+        get 'category_search', on: :collection
         collection do
-          get 'category_search' 
           get 'product_search'
         end
       end
