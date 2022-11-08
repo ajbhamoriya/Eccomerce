@@ -1,0 +1,27 @@
+ git init
+ 1248  git add README.md
+ 1249  git commit -m "first commit"
+ 1250  git branch -M main
+ 1251  git branch
+ 1252  git remote add origin https://github.com/ajbhamoriya/blog.git
+ 1253  git push -u origin main
+ 1254  git branch
+ 1255  git status
+ 1256  git checkout -b develop
+ 1257  git add .
+ 1258  git commit -m "all files"
+ 1259  git push origin develop
+ 1260  git branch
+ 1261  git checkout main
+ 1262  git branch
+ 1263  git pull origin main
+ 1264  git status
+ 1265  git -b "application controller"
+ 1266  git branch
+ 1267  git checkout -b "application controller"
+ 1268  git checkout -b "application_controller"
+ 1269  git status
+ 1270  git add app/controllers/application_controller.rb
+ 1271  git commit -m "change in app controller"
+ 1272  git push origin application_controller
+ 1273  history

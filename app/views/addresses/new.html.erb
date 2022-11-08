@@ -1,0 +1,19 @@
+<%= form_with model: @address, :url => create_cart_address_carts_path do |form| %>
+	<p>
+		<%= form.label :name %><br>
+		<%= form.text_field :name %>
+	</p>
+	<p>
+		<%= form.label :contact_number %><br>
+		<%= form.text_field :contact_number %>
+	</p>
+	<p>
+		<%= form.label :email_id %><br>
+		<%= form.email_field :email_id %>
+	</p>
+	<p>
+		<%= form.label :address %><br>
+		<%= form.text_area :address %>
+	</p>
+	<p><%= form.submit %></p>
+<% end %>

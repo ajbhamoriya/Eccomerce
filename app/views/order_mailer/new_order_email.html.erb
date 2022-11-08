@@ -1,0 +1,16 @@
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <p>You got a new order from <%= @user.email %>!</p>
+    <p>
+    Order details<br>
+    --------------------------
+    </p>
+    <p>Name: <%= @user.first_name %></p>
+    <p>coupn code: <%= @order.coupon_id %></p>
+    <p>discount: <%= @order.discount %></p>
+    <p>total: <%= @order.total %></p>
+  </body>
+</html>

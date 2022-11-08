@@ -1,0 +1,5 @@
+<h1> Wish list -- </h1>
+<% if @product.likes.present? %>
+	<%= @product.name %>
+<% end %>
+<%= link_to "return", home_path(@product.category) %>

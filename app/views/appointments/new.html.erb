@@ -1,0 +1,32 @@
+<%= form_with model: @appointment do |form| %>
+	<% if @appointment.errors.any? %>
+		<h2>
+			<%=pluralize(@appointment.errors.count, "error")%> prohibited this appointment :
+		</h2>
+		<ul>
+			<%=@appointment.errors.full_messages.each do |msg| %>
+				<li>
+					<%= msg%>
+				</li>
+			<% end %>
+		</ul>
+	<% end %>
+	<p>
+		<%= form.label :date %><br>
+		<%= form.datetime_field :appointment_date %>
+    </p>
+	<p>
+		<%= form.label :patient %><br>
+		<%= form.collection_select(:patient_id, @patients,:id,:name,{:prompt   => "Select a patient"}) %>
+	</p>
+	<p>
+		<%= form.label :physician %><br>
+		<%= form.collection_select(:physician_id, @physicians,:id,:name,{:prompt => "select a doctor"}) %>
+	</p>
+	
+	<p>
+		<%= form.submit %>
+	</p>
+
+<% end %>
+    

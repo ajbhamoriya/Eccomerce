@@ -1,0 +1,16 @@
+<h1>index page:</h1>
+<h2>Listing patients :</h2>
+<table>
+	<tr>
+		<th>patient's name:</th>
+		<th></th>
+		<th></th>
+	</tr>
+	<% @patients.each do |patient| %>
+		<tr>
+			<td><%= patient.name %></td>
+			<td><%= link_to "edit",edit_patient_path(patient) %></td> 
+			<td><%= link_to "see_details",patient_path(patient) %></td> 		
+		</tr>
+	<% end %>
+</table>

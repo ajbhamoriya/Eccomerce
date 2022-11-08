@@ -1,0 +1,27 @@
+<h1> <%= current_user.email %>'s order: </h1>
+<table>
+  <tr>
+    <th>name</th>
+    <th>price</th>
+    <th>quantity</th>
+  </tr>
+
+<% if current_user.order.present? %>
+  <% @order_items.each do |order_item| %>
+    <tr>
+      <td><%= order_item.name %></td>
+      <td><%= order_item.price %></td>
+      <td><%= order_item.quantity %></td>
+      <td><%= image_tag order_item.product.image, style: "width:100px;height:100px" %><br></td>
+    </tr>
+   <% end %>
+<% end %>
+</table>
+<h3> total price: <%= current_user.order.total %></h3>
+<h3> discount : <%= current_user.order.discount %></h3>
+<%= button_to "cancel_order",order_path(current_user.order),method: :delete, data: { confirm: 'Are You sure?'} %>
+<% if @order.status.present? %>
+  <h3> status_of_your_order: <%= @order.status %> </h3>
+<% else %> 
+  <h3> status_of_your_order: placed </h3>
+<% end %>

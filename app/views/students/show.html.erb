@@ -1,0 +1,7 @@
+<h1>welcome to show page</h1>
+<p>
+	<strong> student_name: </strong> 
+	<%= @student.name %> 
+</p>
+<%= link_to 'back_to_index', students_path %>
+<%= link_to 'edit_student_form', edit_student_path(@student) %>

@@ -1,0 +1,9 @@
+<%= form_with model :@author do|form|%>
+	<p> 
+		<%= form.label :author_name %><br>
+		<%= form.text_field :name %>
+	</p>
+	<p>
+		<%= form.submit %>
+	</p>
+<% end %>

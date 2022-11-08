@@ -1,0 +1,10 @@
+<h1>Edit page for patient;</h1>
+<%= form_with model: @patient do |form|%>
+	<p>
+		<%= form.label :patient_name %>
+		<%= form.text_field :name %>
+	</p>
+	<p>
+		<%= form.submit %>
+	</p>
+<% end %>

@@ -1,0 +1,24 @@
+<h2 style="color:black;"><u><b>CATEGORIES LIST---</b></u></h2>
+<%= form_tag category_search_homes_path, method: :get do  %>
+  	<h3>
+  		<%= label_tag :search_category_name %>
+  		<%= text_field_tag :name %>
+  		<%= submit_tag "see_category"%> 	
+ 	</h3>
+<% end %>
+<table>
+	<tr>
+		<th><h2 style="color:black;"><b>name of category:</b></h2></th>
+		<th><h2 style="color:black;"><b> image: </b></h2></th>
+		<th></th>
+	</tr>
+	<% @categories.each do |category| %>
+		<tr>
+			<td><h3 style="color:black;"><b><%= category.name %></b></h3></td>
+			<td><%= image_tag category.image, style: "width:100px;height:100px" %></td>
+      <td><h3><b><%= link_to "see_products", home_path(category) %></b></h3></td>
+	    </tr>
+	<% end %>
+</table>
+<%= @name %>
+

@@ -1,0 +1,21 @@
+<h1> Edit page for appointment: </h1>
+<%= form_with model: @appointment do |form| %>
+	<p>
+		<%= form.label :date %><br>
+		<%= form.datetime_field :appointment_date %>
+    </p>
+    <p>
+    	<%= form.label :patient %>
+    	<%= form.collection_select(:patient_id, @patients,:id,:name, {:prompt   => "Select a patient"}) %>
+    </p>
+     <p>
+    	<%= form.label :physician %>
+    	<%= form.collection_select(:physician_id, @physicians,:id,:name, {:prompt   => "Select a physician"})%>
+    </p>
+    
+    <p>
+    	<%= form.submit %>
+    </p>
+<% end %>
+
+ 

@@ -1,0 +1,15 @@
+<h1>index page:</h1>
+<h2>Listing physicians :</h2>
+<table>
+	<tr>
+		<th> name_of_physicians: </th>
+		<th></th>
+	</tr>
+	<% @physicians.each do |physician| %>
+		<tr>
+			<td><%= physician.name %></td>
+			<td><%= link_to "edit_physician", edit_physician_path(physician) %></td>
+			<td><%= link_to "see doctors details",physician_path(physician) %></td>
+		<tr>
+	<% end %>
+</table>

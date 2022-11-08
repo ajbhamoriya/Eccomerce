@@ -1,0 +1,85 @@
+<table>
+  <tr>
+    <th>name</th>
+    <th>price</th>
+    <th>quantity</th>
+    <th>images</th>
+    <th></th>
+  </tr>
+<% if current_user.cart.present? %>
+  <% if current_user.cart.cart_items.present? %>
+    <% @cart_items.each do |cart_item| %>
+      <tr>
+        <td><%= cart_item.name %></td>
+        <td><%= cart_item.price %></td>
+        <td><%= cart_item.quantity %></td>
+        <td><%= image_tag cart_item.product.image, style: "width:100px;height:100px" %><br></td>
+        <td><%= link_to "remove_item",cart_item_path(cart_item),method: :delete, data: { confirm: 'Are You sure?' } %></td>
+      </tr>
+    <% end %>
+  <% end %>
+<% end %>
+
+</table>
+<% if current_user.cart.present? %>
+  <h3>total_amount: <%= current_user.cart.total %></h3>
+  <% if current_user.cart.discount.present? %>
+     <h3>discount: <%= current_user.cart.discount %></h3>
+    <% if current_user.cart.total >= 0 %>
+      <h3>total_amount_with_discount: <%= current_user.cart.total - current_user.cart.discount %><br>
+    <% else %>
+      <h3><% current_user.cart.total %></h3>
+    <% end %>
+  <% end %><br>
+  <% if current_user.cart.address.present? %>
+    <h1> delievery address:</h1>
+    <p>
+      <strong>name:</strong>
+      <%= @address.name %>
+    </p>
+ 
+    <p>
+      <strong>contact_number:</strong>
+      <%= @address.contact_number %>
+    </p>
+
+    <p>
+      <strong>email_id:</strong>
+      <%= @address.email_id %>
+    </p>
+
+    <p>
+      <strong>address:</strong>
+      <%= @address.address %>
+    </p>
+
+    <%= button_to "edit_address",edit_address_path(@address),method: :get %><br>
+    <%= button_to "remove_address",destroy_cart_address_cart_path(@address),method: :delete %>
+    <% unless current_user.order.present? %>
+      <%= button_to "place_order",orders_path,method: :post %>
+    <% end %>
+  <% end %><br>
+  <% if current_user.cart.cart_items.present? %>
+    <% unless current_user.cart.coupon_id.present? %>
+      <%= form_tag apply_coupon_carts_path, method: :post do %>
+        <h3>
+          <%= label_tag :coupon_code %>
+          <%= text_field_tag :code %>
+          <%= submit_tag "apply_coupon" %>   
+        </h3>
+      <% end %>
+    <% end %>
+  <% end %>
+  <% if current_user.cart.cart_items.present? %>
+    <% unless current_user.cart.address.present? %>
+      <%= button_to "add_delievery_address",new_address_path,method: :get %><br>
+    <% end %>
+  <% end %>
+  <% if current_user.cart.coupon_id.present? %>
+    <%= button_to "remove_coupon",destroy_coupon_carts_path,method: :get %>
+  <% end %>
+  <% if current_user.order.present? %>
+    <%= button_to "see_orders",orders_path,method: :get %>
+  <% end %>
+<% end %>
+<%= button_to "search_new_products",product_search_homes_path,method: :get %><br>
