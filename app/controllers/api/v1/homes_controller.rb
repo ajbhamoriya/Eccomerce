@@ -17,12 +17,14 @@ module Api
 			end	
 
 			def category_search
+				#byebug
   				q = params[:name]
     			@categories = Category.where("name LIKE ?", "%#{q}%")
     			render json: @categories
   			end
 
   			def product_search
+  				#byebug
   				p = params[:name]
   				@products = Product.where("name LIKE ?", "%#{p}%")
   				render json: @products
