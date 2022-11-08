@@ -1,0 +1,51 @@
+
+<h5><% if current_user.cart.present? %>
+	<%= link_to "see_cart_items",cart_items_path %>
+<% end %></h5>
+
+<h5><% if current_user.likes.present? %>
+	<%= link_to "see_wishlist",wishlists_path %>
+<% end %></h5>
+
+<h5><%= link_to "return_to_categories",homes_path %></h5>
+
+<h1 style="color:black;"><u> products------ </u></h1>
+
+<%= form_tag product_search_homes_path, method: :get do  %>
+  	<h3><%= label_tag :search_product %>
+  	<%= text_field_tag :name %>
+  	<%= submit_tag "see_product"%> 	
+ 	 </h3>
+<% end %> 
+
+<table>
+	<tr>
+		<th></th>
+		<th></th>
+		<th></th>
+		<th></th>
+		<th></th>
+		<th></th>
+		<th></th>
+	</tr>
+    <% @products.each do |product| %>
+    	<tr>
+    		<td><h2 style="color:black;"><b><%= product.name %></b></h2></td>
+    		<td><%= image_tag product.image, style: "width:100px;height:100px" %></td>
+    		<td><h2 style="color:black;"><b><%= product.price %></b></h2></td>
+            <td><% if current_user.order.nil? %>
+	          	<%= button_to "add_to_cart",add_to_cart_cart_path(product) %>
+            <% end %></td>
+            <td>
+            	<% product_id = product.id %>
+            	<% if current_user.likes.exists?(likeable_id: product.id) %>
+            	    <% like = current_user.likes.where(likeable_id: product.id)%>
+            	    <% like_id = like.ids %>
+            		<%= button_to "dislike",dislike_product_home_path(like_id), method: :get %>
+            	<% else %>
+            	    <%= button_to "like",like_product_home_path(product) %>
+            	<% end %>	
+            </td>
+    	</tr>
+    <% end %>
+</table>

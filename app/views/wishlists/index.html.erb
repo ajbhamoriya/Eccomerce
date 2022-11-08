@@ -1,0 +1,7 @@
+<h4><b> Wish list -- </b></h4>
+<% @likes.each do |like| %>
+	<% a = like.likeable_id 
+     product = Product.find(a) %>
+    <b><%= product.name %></b><br> 
+
+<% end %>

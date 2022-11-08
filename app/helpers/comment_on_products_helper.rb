@@ -1,0 +1,2 @@
+module CommentOnProductsHelper
+end

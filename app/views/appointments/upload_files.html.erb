@@ -1,0 +1,7 @@
+ 
+ 	<% if @appointment.prescription.attached? %>
+		PRESCRIPTION: <%= link_to 'Download_Prescription', download_prescription_appointment_path(@appointment.id) %><br>
+	<% end %>	
+    <% if @appointment.test_report.attached? %>
+    	TEST_REPORT: <%= link_to 'Download_testReport', download_test_report_appointment_path(@appointment.id) %>
+    <% end %>

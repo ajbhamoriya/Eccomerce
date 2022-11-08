@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Blog</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+  <body style="margin-top: 5%;">
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+
+    <% if user_signed_in? %>
+      <div>
+        <h2> you have signed in </h2>
+        <%= link_to "Sign out", destroy_user_session_path, method: :delete %>
+      </div>
+    <% else %>
+      <h2> you have signed out </h2>
+      <%= link_to "sign_up",new_user_registration_path %><br>
+      <%= link_to "sign_in",user_session_path %><br>
+    <% end %>
+    <%= yield %>
+    <% flash.each do |type, msg| %>
+      <div>
+        <%= msg %>
+      </div>
+    <% end %>
+  </body>
+</html>

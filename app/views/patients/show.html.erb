@@ -1,0 +1,8 @@
+<h1>show page of Patient:</h1>
+<p>
+	<strong>name:</strong>
+	<%= @patient.name %>
+</p>
+<%= link_to "edit", edit_patient_path(@patient) %><br>
+<%= link_to "back_to_index",patients_path %><br>
+<%= link_to "see_appointments",see_patient_path(@patient) %>

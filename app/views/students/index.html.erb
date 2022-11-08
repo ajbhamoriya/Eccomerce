@@ -1,0 +1,25 @@
+<h1> welcome to index page </h1>
+<h2> -----Listing students----- </h2>
+<table>
+	<tr>
+		<th>Students name</th>
+		<th colspan = "2"></th>
+	</tr>
+	<% @students.each do|student| %>
+		<tr>
+			<td>
+				<%= student.name %>
+			</td>
+			<td>
+				<%= link_to 'show',student_path(student) %>
+			</td>
+			<td>
+				<%= link_to "edit",edit_student_path(student) %>
+			</td>
+			<td>
+				<%= link_to "delete",student_path(student), method: :delete, data: { confirm:"Are you sure??" } %>
+			</td>
+		</tr>
+	<% end %>
+	<%= link_to 'new_form',new_student_path %>	
+</table>

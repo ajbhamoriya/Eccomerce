@@ -1,0 +1,33 @@
+<h1>show page:</h1>
+<p>
+	<strong> date : </strong>
+	<%= @appointment.appointment_date %>
+</p>
+<p>
+	<strong> patient: </strong>
+	<%= @appointment.patient.name %>
+</p>
+<p>
+	<strong> physician: </strong>
+	<%= @appointment.physician.name %>
+</p>
+
+<%= form_for @appointment, url: upload_files_appointment_path, method: :post do |form| %>
+	<% if @appointment.errors.any? %>
+		<h2>
+			<%=pluralize(@appointment.errors.count, "error")%> prohibited this appointment :
+		</h2>
+		<ul>
+			<%=@appointment.errors.full_messages.each do |msg| %>
+				<li>
+					<%= msg%>
+				</li>
+			<% end %>
+		</ul>
+	<% end %>
+  <%= form.label :prescription %>
+  <%= form.file_field :prescription, required: true %><br>
+  <%= form.label :test_report %>
+  <%= form.file_field :test_report, required: true %><br>
+  <%= form.submit %>
+<% end %>

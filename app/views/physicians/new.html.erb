@@ -1,0 +1,13 @@
+<%= form_with scope: :physician, url: physicians_path do |form| %>
+	<p>
+		<%= form.label :name %>
+		<%= form.text_field :name %>
+	</p>
+	<p>
+		<%= form.label :photo %>
+		<%= form.file_field :photo %>
+	</p>
+	<p>
+		<%= form.submit %>
+	</p>
+<% end %>

@@ -1,0 +1,12 @@
+<h1> show page for physician :</h1>
+<p>
+	<% if @physician.photo.attached? %>
+		<%= image_tag @physician.photo, style: "width:100px;height:100px" %><br>
+	<% end %>
+	<strong>name:</strong>
+	<%= @physician.name %><br>
+	<%= link_to "see_appointments",see_physician_path(@physician) %><br>
+	<%= link_to 'Edit_details', edit_physician_path(@physician) %><br>
+    <%= link_to 'Back to index page', physicians_path %><br>
+</p>
+
