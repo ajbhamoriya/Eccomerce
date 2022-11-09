@@ -4,5 +4,5 @@ class Product < ApplicationRecord
   has_one_attached :image
   validates :name,:price,:stock_quantity,:image, presence: true
   has_many :likes, as: :likeable
-  has_many :comments
+  has_many :comment_on_products,dependent: :destroy
 end

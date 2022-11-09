@@ -51,5 +51,11 @@ class HomesController < ApplicationController
         redirect_to home_path(@product.category)
 	    flash[:alert] = "item removed succesfully!!!!!"
    end
+
+   def product_detail
+   	    #byebug
+   		@product = Product.find_by(id: params[:id])
+   		#byebug
+   end 
  
 end
