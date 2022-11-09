@@ -16,11 +16,11 @@ class Api::V1::Users::RegistrationsController < Devise::RegistrationsController
     end
   end
 
-  #private
+  private
 
-  #def serialized_user resource
-    #Api::V1::UserSerializer.new(resource).as_json
-  #end
+  def serialized_user resource
+    Api::V1::UserSerializer.new(resource).as_json
+  end
   
   protected
   

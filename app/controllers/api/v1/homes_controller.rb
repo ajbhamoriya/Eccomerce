@@ -47,17 +47,3 @@ module Api
    	end
 end
 
-# module Api 
-# 	module V1
-#     	class HomeController < ApiController
-#         	def index
-# 			# byebug
-# 			if current_user.user_type == "merchant"
-# 				@products = current_user.products
-# 				render json: @products
-# 			else
-# 				@products = Product.all
-# 				render json: @products
-# 			end
-# 		end
-

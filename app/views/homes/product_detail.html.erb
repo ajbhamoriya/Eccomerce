@@ -1,0 +1,29 @@
+<h1> details of <%= @product.name %> </h1>
+<div><h3>Price - <%= @product.price %></h3>
+<h3> Quantity - <%= @product.stock_quantity %></h3>
+</h3><%= image_tag @product.image, style: "width:100px;height:100px" %></h3></div>
+
+<h2>Comments</h2>
+<% @product.comment_on_products.each do |comment| %>
+  <p>
+    <strong>Comment:</strong>
+    <%= comment.description %>
+  </p>
+<% end %>
+
+
+<%= form_with scope: :comment_on_products, url:comment_on_products_path do |form| %>
+
+  <p>
+    <%= form.label :comment %><br>
+    <%= form.text_area :description %>
+  </p>
+  <p>
+    <%= form.hidden_field :user_id, value: current_user.id %>
+    <%= form.hidden_field :product_id, value: @product.id %>
+  </p>
+  <p>
+    <%= form.submit %>
+  </p>
+<% end %>
+
