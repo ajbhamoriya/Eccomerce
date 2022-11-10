@@ -2,12 +2,12 @@ Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   root 'homes#index'
-  #resources 'comment_on_products'
+  resources 'comment_on_products'
 
   resources 'wishlists' 
   
   resources 'orders'
-  resource 'orders' do
+  resources 'orders' do
     member do
       get 'show' 
     end
@@ -31,6 +31,7 @@ Rails.application.routes.draw do
   end
 
   resources'homes' do
+    get "product_details", on: :member
     post "like_product", on: :member
     get "dislike_product", on: :member
     collection do
@@ -99,6 +100,22 @@ Rails.application.routes.draw do
         end
       end
       resources 'wishlists' 
+      resources'carts' do
+        collection do
+          post 'apply_coupon'
+          post 'create_cart_address'
+          get 'destroy_coupon'
+        end
+        member do
+          post 'add_to_cart'
+          patch 'update_cart_address'
+          delete 'destroy_cart_address'
+        end
+      end
+      #resources 'orders'
+      resources 'orders'
+      resources 'cart_items'
+      resources 'comment_on_products'
     end
   end
   

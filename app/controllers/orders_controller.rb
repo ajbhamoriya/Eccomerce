@@ -3,7 +3,7 @@ class OrdersController < ApplicationController
   Razorpay.setup('rzp_test_sGKFWWIENwCHjV', 'EX65NY1GAg5e6mTzJGJmoBE6')
 	def index
 		@order = current_user.order
-        @order_items = @order.order_items
+    @order_items = @order.order_items
 	end
 	def create
   	@cart = current_user.cart

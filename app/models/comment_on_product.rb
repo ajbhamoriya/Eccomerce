@@ -1,4 +1,4 @@
 class CommentOnProduct < ApplicationRecord
-	belongs_to :Product
+	belongs_to :product
 	belongs_to :user
 end
