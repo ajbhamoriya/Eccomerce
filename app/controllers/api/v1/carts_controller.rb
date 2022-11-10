@@ -16,10 +16,11 @@ module Api
 
   			def apply_coupon
   				@coupon = Coupon.find_by(code: params[:code])
+
   				cart = current_user.cart
     			if @coupon.present? 
     				if cart.total > @coupon.min_cart_value
-						discount = cart.check_coupon(@coupon)
+							discount = cart.check_coupon(@coupon)
     					render json: { meta: { discount:"#{discount}"} }
     				else
     					render json: { meta:{ message: "no discount avialable" }}

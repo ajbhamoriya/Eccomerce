@@ -52,10 +52,8 @@ class HomesController < ApplicationController
 	    flash[:alert] = "item removed succesfully!!!!!"
    end
 
-   def product_detail
-   	    #byebug
+
+    def product_details
    		@product = Product.find_by(id: params[:id])
-   		#byebug
-   end 
- 
+    end 
 end

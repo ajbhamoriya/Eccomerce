@@ -33,16 +33,30 @@ module Api
             def like_product
     			#byebug
     			@product = Product.find_by(id: params[:id])
-    			if current_user.likes.exists?(likeable_id: @product.id)
-    				redirect_to home_path(@product.category)
-					flash[:alert] = "this item is already added in your wishlist."
-				else
-    				@like = Like.create(user_id: current_user.id, likeable_type: Product, likeable_id: @product.id) 
-            		redirect_to home_path(@product.category)
-					flash[:alert] = "item added succesfully!!!!!"
-                end
+    			#if current_user.likes.exists?(likeable_id: @product.id)
+    			#redirect_to home_path(@product.category)
+				#flash[:alert] = "this item is already added in your wishlist."
+				#else
+        		@like = Like.create(user_id: current_user.id, likeable_type: Product, likeable_id: @product.id) 
+        		render json: {meta: {message: "like created"}}
     		end
 
+    		def dislike_product
+    			@like = Like.find_by(id: params[:id])
+    			likeable_id = @like.likeable_id
+    			@product = Product.find(likeable_id)
+    			#byebug
+       			#like = current_user.likes.where(likeable_id: @product.id)
+        		#Like.destroy(like)
+        		@like.destroy
+        		render json: {meta: {message: "like deleted"}}
+   			end
+
+    		def product_details
+   				@product = Product.find_by(id: params[:id])
+   				render json: @product
+    		end 
+            
         end
    	end
 end

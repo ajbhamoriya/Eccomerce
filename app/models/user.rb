@@ -1,6 +1,6 @@
 class User < ApplicationRecord
 	has_many :likes
-    has_many :comment_on_products
+    has_many :comment_on_products, dependent: :destroy
 	has_one :order, dependent: :destroy
 	has_one :cart, dependent: :destroy
     	devise :database_authenticatable, :registerable,
