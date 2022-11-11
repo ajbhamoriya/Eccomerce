@@ -3,14 +3,16 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
   root 'homes#index'
   resources 'comment_on_products'
-  resources 'wishlists' 
+  resources 'wishlists'
+  
+ 
   
   resources 'orders'
-  resources 'orders' do
-    member do
-      get 'show' 
-    end
-  end
+  #resources 'orders' do
+    #member do
+      #get 'show' 
+    #end
+  #end
 
   resources 'addresses'
   resources'carts' do
@@ -21,7 +23,7 @@ Rails.application.routes.draw do
     end
   end
 
-    resources'carts' do
+  resources'carts' do
     member do
       post 'add_to_cart'
       patch 'update_cart_address'
@@ -106,7 +108,7 @@ Rails.application.routes.draw do
           get 'destroy_coupon'
         end
       end
-      resources :cart_items
+      resources 'cart_items' do
         member do
           post 'add_to_cart'
           patch 'update_cart_address'
