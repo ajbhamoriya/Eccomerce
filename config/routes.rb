@@ -107,8 +107,6 @@ Rails.application.routes.draw do
           post 'create_cart_address'
           get 'destroy_coupon'
         end
-      end
-      resources 'cart_items' do
         member do
           post 'add_to_cart'
           patch 'update_cart_address'

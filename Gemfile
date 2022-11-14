@@ -62,3 +62,4 @@ gem 'jquery-rails'
 gem 'devise-jwt'
 gem 'rack-cors'
 gem 'active_model_serializers'
+gem 'dotenv-rails', groups: [:development, :test]

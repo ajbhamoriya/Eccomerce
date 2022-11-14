@@ -1,6 +1,7 @@
 	module Api
 		module V1
-	  	class OrdersController < ApiController  
+	  	class OrdersController < ApiController
+	  	before_action :authenticate_user!  
 	  		respond_to :js, :json, :html
  		  	Razorpay.setup('rzp_test_sGKFWWIENwCHjV', 'EX65NY1GAg5e6mTzJGJmoBE6')			
 				def index

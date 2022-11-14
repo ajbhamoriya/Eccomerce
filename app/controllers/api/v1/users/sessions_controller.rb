@@ -32,6 +32,14 @@ class Api::V1::Users::SessionsController < Devise::SessionsController
       render json: { errors: { 'email or password' => ['is invalid'] } }, status: :unprocessable_entity
     end
   end
+  
+  def destroy
+    # byebug
+    JwtDenylist.find_or_create_by(jti: request.headers['token'], exp: Time.now) if request.headers['token']
+    render json: { message: "signed out" }, status: 201
+  end
+
+
 
   private
    def sign_in_params

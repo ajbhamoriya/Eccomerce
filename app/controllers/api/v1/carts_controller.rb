@@ -1,7 +1,7 @@
 module Api
 	module V1
 		class CartsController < ApiController
-	
+	    before_action :authenticate_user!
 			def add_to_cart
 				@product = Product.find_by(id: params[:id])
 				@cart = current_user.cart.present? ? current_user.cart : Cart.create!(user_id: current_user.id)

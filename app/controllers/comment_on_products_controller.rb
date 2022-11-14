@@ -27,7 +27,7 @@ class CommentOnProductsController < ApplicationController
 
   private
     def comment_params
-      params.require(:comment_on_products).permit(:description,:user_id, :product_id)
+      params.require(:comment_on_products).permit(:description,:user_id, :product_id, :reply_id)
     end
 
 end
