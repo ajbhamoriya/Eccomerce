@@ -1,6 +1,7 @@
 module Api
     module V1		
 		class CartItemsController < ApiController
+			#before_action :authenticate_user!
 			def index
 				#byebug
 				@cart = current_user.cart

@@ -1,6 +1,7 @@
 module Api
   module V1
     class CommentOnProductsController < ApiController
+      before_action :authenticate_user!
 	   def create
       #byebug
     	#@product = Product.find(params[:product_id])

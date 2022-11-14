@@ -1,13 +1,10 @@
 module Api
 	module V1
 		class HomesController < ApiController
-		before_action :authenticate_user!
-	
+			before_action :authenticate_user!
 			def index
-				#byebug
       			@categories = Category.all
-      			#byebug
-      			render json: @categories
+      			render json: {result: @categories}, status: :ok
         	end
 
         	def show

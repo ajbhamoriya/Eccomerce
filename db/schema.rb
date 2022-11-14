@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_11_08_070015) do
+ActiveRecord::Schema.define(version: 2022_11_11_105940) do
 
   create_table "Demos", force: :cascade do |t|
     t.text "name"
@@ -178,6 +178,7 @@ ActiveRecord::Schema.define(version: 2022_11_08_070015) do
     t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "reply_id"
   end
 
   create_table "comments", force: :cascade do |t|
@@ -191,8 +192,8 @@ ActiveRecord::Schema.define(version: 2022_11_08_070015) do
 
   create_table "coupons", force: :cascade do |t|
     t.string "code"
-    t.decimal "discount"
-    t.decimal "min_cart_value"
+    t.float "discount"
+    t.float "min_cart_value"
     t.string "discount_type"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -204,12 +205,12 @@ ActiveRecord::Schema.define(version: 2022_11_08_070015) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "jwt_denylists", force: :cascade do |t|
+  create_table "jwt_denylist", force: :cascade do |t|
     t.string "jti", null: false
     t.datetime "exp", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["jti"], name: "index_jwt_denylists_on_jti"
+    t.index ["jti"], name: "index_jwt_denylist_on_jti"
   end
 
   create_table "libraries", force: :cascade do |t|

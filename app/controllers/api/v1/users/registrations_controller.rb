@@ -2,7 +2,6 @@ class Api::V1::Users::RegistrationsController < Devise::RegistrationsController
   respond_to :json
   skip_before_action :verify_authenticity_token, :only => :create
   before_action :sign_up_params, only: [:create]
-  
   def create
     user = User.new(sign_up_params)
     # byebug
