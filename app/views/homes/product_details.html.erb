@@ -50,6 +50,14 @@
                data: { confirm: 'Are you sure?' } %>
     <% end %>
   </h4>
+
+  <div class = "rep">
+    <h2><strong>replies</strong></h2>
+    <% comment.replies.each do |reply| %>
+      <h3 style="color:black;"><%= reply.user.first_name%> --> <%= reply.description %> </h3><br>
+    <% end %>                 
+  </div>
+  
   <div>
     <%= form_with scope: :comment_on_products, url:comment_on_products_path do |form| %> 
       <%= form.hidden_field :reply_id, :value => comment.id %>
@@ -59,12 +67,6 @@
           <%= form.text_area :description %>
           <%= form.submit "reply" %></h4> 
     <% end %>
-  </div>
-  <div class = "rep">
-    <h2><strong>replies</strong></h2>
-    <% comment.replies.each do |reply| %>
-      <h3 style="color:black;"><%= reply.user.first_name%> --> <%= reply.description %> </h3><br>
-    <% end %>                 
   </div>
   </div>
 <% end %>
