@@ -1,13 +1,17 @@
-	module Api
-		module V1
+module Api
+	module V1
 	  	class OrdersController < ApiController
 	  	before_action :authenticate_user!  
 	  		respond_to :js, :json, :html
  		  	Razorpay.setup('rzp_test_sGKFWWIENwCHjV', 'EX65NY1GAg5e6mTzJGJmoBE6')			
 				def index
-					@order = current_user.order
-   				@order_items = @order.order_items
-   				render json: @order
+					if current_user.order.present? 
+						@order = current_user.order
+   						@order_items = @order.order_items
+   						render json: @order
+   					else 
+   						render json: {meta: {message: "first_made_order"}}
+   					end
 				end
 
 				def create
