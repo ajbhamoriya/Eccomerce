@@ -37,7 +37,7 @@ class HomesController < ApplicationController
 		#else
         @like = Like.create(user_id: current_user.id, likeable_type: Product, likeable_id: @product.id) 
         redirect_to home_path(@product.category)
-	    flash[:alert] = "item added succesfully!!!!!"
+	    
     end
 
     def dislike_product

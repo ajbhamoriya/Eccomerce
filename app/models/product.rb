@@ -7,4 +7,5 @@ class Product < ApplicationRecord
   validates :name,:price,:stock_quantity,:image, presence: true
   has_many :likes, as: :likeable
   has_many :comment_on_products,dependent: :destroy
+  has_one :order_item
 end

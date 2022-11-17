@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_11_11_105940) do
+ActiveRecord::Schema.define(version: 2022_11_17_122622) do
 
   create_table "Demos", force: :cascade do |t|
     t.text "name"
@@ -249,6 +249,8 @@ ActiveRecord::Schema.define(version: 2022_11_11_105940) do
     t.string "razorpay_order_id"
     t.float "total"
     t.string "razorpay_payment_id"
+    t.integer "payment_status", default: 0
+    t.string "razorpay_refund_id"
   end
 
   create_table "patients", force: :cascade do |t|
