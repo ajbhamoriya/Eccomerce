@@ -2,7 +2,10 @@ Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   root 'homes#index'
-  resources 'comment_on_products'
+  resources 'comment_on_products' do
+    post "like_comment", on: :member
+    get "dislike_comment", on: :member
+  end
   resources 'wishlists'
   
  

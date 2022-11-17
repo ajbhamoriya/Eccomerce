@@ -49,7 +49,15 @@
                method: :delete,
                data: { confirm: 'Are you sure?' } %>
     <% end %>
-  </h4>
+
+    <% if current_user.likes.exists?(likeable_id: comment.id) %>
+      <% like = current_user.likes.where(likeable_id: comment.id)%>
+      <% like_id = like.ids %>
+      <%= button_to "dislike"%>
+    <% else %>
+      <%= button_to "like",like_comment_comment_on_product_path(comment)%>
+    <% end %> 
+</h4>
 
   <div class = "rep">
     <h2><strong>replies</strong></h2>
@@ -71,7 +79,6 @@
   </div>
 <% end %>
 
+ 
 
-
-
-
+          

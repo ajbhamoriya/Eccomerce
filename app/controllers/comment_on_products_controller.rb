@@ -25,6 +25,17 @@ class CommentOnProductsController < ApplicationController
     redirect_to product_details_home_path(@product)
   end
 
+  def like_comment
+    @comment = CommentOnProduct.find_by_id(id: params[:id])
+    byebug
+    product_id = @comment.product_id
+    @like = Like.create(user_id: current_user.id, likeable_type: CommentOnProduct, likeable_id: @comment.id)
+    redirect_to product_details_home_path(product_id) 
+  end
+ 
+  def dislike_comment
+  end
+
   private
     def comment_params
       params.require(:comment_on_products).permit(:description,:user_id, :product_id, :reply_id)

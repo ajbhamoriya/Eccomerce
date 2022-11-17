@@ -8,7 +8,7 @@ class Order < ApplicationRecord
     delivered: 3,
     canceled: 4
     }
-
+    enum payment_status: [:created, :paymentcompleted, :cancelled, :refunded]
 	after_create :place_order
 
 	after_update :send_status_mail, if: :saved_change_to_status?
