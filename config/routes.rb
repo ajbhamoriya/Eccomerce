@@ -8,9 +8,9 @@ Rails.application.routes.draw do
   end
   resources 'wishlists'
   
- 
-  
-  resources 'orders'
+  resources 'orders' do
+    get "cancel_payment", on: :member
+  end
   #resources 'orders' do
     #member do
       #get 'show' 

@@ -32,9 +32,23 @@ class OrdersController < ApplicationController
 	def destroy
 	  @order = Order.find(params[:id])
 	  @order.destroy
-
-	  redirect_to cart_items_path
+	  redirect_to root_path
 	end
+
+	def cancel_payment
+		@order = Order.find_by_id(params[:id])
+		#byebug
+		if @order.payment_status == "paymentcompleted" 
+			refund = RefundPayment.new(@order).refund_payment
+			@order.update(payment_status: "refunded", razorpay_refund_id: refund.id)#status canceled 
+		elsif @order.payment_status != "refunded" 
+			@order.update(payment_status: "cancelled")
+		elsif @order.payment_status == "created"
+			@order.update(payment_status: "cancelled")
+		end
+		redirect_to orders_path
+	end
+
 
 	def show
     @order = Order.find_by(id: params[:id])
@@ -42,38 +56,20 @@ class OrdersController < ApplicationController
   end
   
   def update
-   #byebug
  		order = Order.find_by(id: params[:id])
 		if order.present?
 			payment_response = {razorpay_order_id: params[:razorpay_order_id], razorpay_payment_id: params[:razorpay_payment_id], razorpay_signature: params[:razorpay_signature] }
 			#byebug
 			verify_result = Razorpay::Utility.verify_payment_signature(payment_response)
 			if verify_result
-				#byebug
-				order.update(razorpay_payment_id: params[:razorpay_payment_id] ,payment_status: "payment_completed")
+				order.update(razorpay_payment_id: params[:razorpay_payment_id] ,payment_status: "paymentcompleted")
 			else
-				#byebug
-			flash[:error] = "something went wrong!!!" 
-			redirect_to orders_path
+				flash[:error] = "something went wrong!!!" 
+				redirect_to orders_path
 			end
 		end
   end
 end 
 
 
-# def cancel_order
-# 	# byebug
-# 	@order = Order.find_by_id(params[:id])
-# 	# return redirect_to orders_path unless @order.present?
-# 	if @order.status == "paymentcompleted" 
-# 		refund = RefundPayment.new(@order).refund_payment
-# 		@order.update(status: "refunded", razorpay_refund_id: refund.id)    #status canceled 
-# 	elsif @order.status != "refunded" #or 
-# 		@order.update(status: "cancelled")
-# 		# byebug
-# 	elsif @order.status == "created"
-# 		@order.update(status: "cancelled")
-# 	end
-# 	redirect_to orders_path
-# end
 

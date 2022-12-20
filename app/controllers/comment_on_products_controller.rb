@@ -26,14 +26,21 @@ class CommentOnProductsController < ApplicationController
   end
 
   def like_comment
-    @comment = CommentOnProduct.find_by_id(id: params[:id])
-    byebug
+    #byebug
+    @comment = CommentOnProduct.find(params[:id])
     product_id = @comment.product_id
     @like = Like.create(user_id: current_user.id, likeable_type: CommentOnProduct, likeable_id: @comment.id)
     redirect_to product_details_home_path(product_id) 
   end
  
   def dislike_comment
+    #byebug
+    @like = Like.find_by(id: params[:id])
+    likeable_id = @like.likeable_id
+    @comment = CommentOnProduct.find(likeable_id)
+    product_id = @comment.product_id
+    @like.destroy
+    redirect_to product_details_home_path(product_id)
   end
 
   private

@@ -10,3 +10,4 @@ end
 
 
 #rails_blob_path(@appointment.prescription, disposition: "attachment")
+

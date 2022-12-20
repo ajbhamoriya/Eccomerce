@@ -49,7 +49,6 @@ class HomesController < ApplicationController
         #Like.destroy(like)
         @like.destroy
         redirect_to home_path(@product.category)
-	    flash[:alert] = "item removed succesfully!!!!!"
    end
 
 

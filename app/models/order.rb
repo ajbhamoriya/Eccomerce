@@ -1,7 +1,8 @@
 class Order < ApplicationRecord
-	belongs_to :user
+	belongs_to :user,dependent: :destroy
 	has_many :order_items, dependent: :destroy
-	
+	before_save :default_values
+
 	enum status: {	
     confirmed: 1,
     out_for_delivery: 2,
@@ -12,6 +13,10 @@ class Order < ApplicationRecord
 	after_create :place_order
 
 	after_update :send_status_mail, if: :saved_change_to_status?
+
+    def default_values
+        self.status ||= "confirmed"
+    end
     
 
     def send_status_mail

@@ -9,12 +9,12 @@ class RefundPayment
 	def refund_payment
 		paymentId = @order.razorpay_payment_id 
 		para_attr = {
-		"amount": @order.total_price,
+		"amount": @order.total.to_i,
 		"speed": "normal"
 		}
+		#byebug
 		response = Razorpay::Payment.fetch(paymentId).refund(para_attr) 
 	end
-
 
 end
 

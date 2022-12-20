@@ -64,3 +64,5 @@ gem 'rack-cors'
 gem 'active_model_serializers'
 gem 'dotenv-rails', groups: [:development, :test]
 gem 'active_storage_base64'
+gem 'wicked_pdf'
+gem 'wkhtmltopdf-binary'

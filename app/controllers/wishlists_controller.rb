@@ -1,6 +1,8 @@
 class WishlistsController < ApplicationController
 	def index
-    	@likes = current_user.likes
+    	likes = current_user.likes
+    	@likes = likes.where(likeable_type: "Product")
+
     end 	
 end
 #User.where('age > 20').pluck(:id)

@@ -41,9 +41,13 @@
             	<% if current_user.likes.exists?(likeable_id: product.id) %>
             	    <% like = current_user.likes.where(likeable_id: product.id)%>
             	    <% like_id = like.ids %>
-            		<%= button_to "dislike",dislike_product_home_path(like_id), method: :get %>
+            		<%= link_to dislike_product_home_path(like_id), method: :get do%>
+            		<h3 style="margin-left: 2px;margin-top: -9px;"><%= image_tag "/assets/like.jpeg", :size => "30x30" %></h3>
+            		<%end%>
             	<% else %>
-            	    <%= button_to "like",like_product_home_path(product) %>
+            	    <%= link_to like_product_home_path(product),method: :post do%>
+            	    <h3 style="margin-left: 5px;margin-top: -9px;"><%= image_tag "/assets/dislike.png", :size => "27x27" %></h3>
+            	    <%end%>
             	<% end %>	
             </td>
 

@@ -25,3 +25,7 @@
 <% else %> 
   <h3> status_of_your_order: placed </h3>
 <% end %>
+<h3> payment_status_of_your_order: <%= @order.payment_status %> </h3>
+<% if @order.payment_status == "paymentcompleted" %>
+  <h3><%= button_to "cancel_payment",cancel_payment_order_path(@order), method: :get %></h3>
+<% end %> 
