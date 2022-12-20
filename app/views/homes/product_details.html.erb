@@ -48,16 +48,21 @@
       <%= link_to 'Destroy Comment',comment_on_product_path(comment.id),
                method: :delete,
                data: { confirm: 'Are you sure?' } %>
-    <% end %>
-
-    <% if current_user.likes.exists?(likeable_id: comment.id) %>
+    <% end %></h4>
+    <% if current_user.likes.exists?(likeable_id: comment.id, likeable_type: "CommentOnProduct") %>
       <% like = current_user.likes.where(likeable_id: comment.id)%>
-      <% like_id = like.ids %>
-      <%= button_to "dislike"%>
+      <%= link_to dislike_comment_comment_on_product_path(like.ids),method: :get do%>
+      <h3 style="margin-left: 2px;margin-top: -9px;"><%= image_tag "/assets/like.jpeg", :size => "30x30" %></h3>
+      <%end%>
     <% else %>
-      <%= button_to "like",like_comment_comment_on_product_path(comment)%>
+      <%= link_to like_comment_comment_on_product_path(comment.id), method: :post do%>
+      <h3 style="margin-left: 5px;margin-top: -9px;"><%= image_tag "/assets/dislike.png", :size => "27x27" %></h3>
+      <%end%>
     <% end %> 
-</h4>
+</td>
+
+ 
+
 
   <div class = "rep">
     <h2><strong>replies</strong></h2>
@@ -78,7 +83,3 @@
   </div>
   </div>
 <% end %>
-
- 
-
-          

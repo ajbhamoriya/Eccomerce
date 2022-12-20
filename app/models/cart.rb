@@ -1,7 +1,7 @@
 class Cart < ApplicationRecord
 	belongs_to :user
 	has_many :cart_items, dependent: :destroy
-	has_one :address
+	has_one :address, dependent: :destroy
   #belongs_to :order
 	def check_coupon(coupon)
 		@coupon = coupon

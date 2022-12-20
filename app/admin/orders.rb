@@ -44,6 +44,7 @@ ActiveAdmin.register Order do
     f.inputs do 
       #f.input :status, :as => :select, :collection => order.status.map{|m| [m.key, m.value]},:prompt   => "Select a status"
       f.input :status, :as => :select, :collection => ["confirmed","out_for_delivery","delivered","canceled"],:prompt => "select_status"
+      f.input :payment_status, :as => :select, :collection => ["created","paymentcompleted","cancelled","refunded"],:prompt => "select_payment_status"
     end
     f.actions
   end
